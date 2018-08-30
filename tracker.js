@@ -246,7 +246,7 @@ maintracker.Tracker = function(params) {
 					// start timing
 					detectionTimer = (new Date).getTime();
 				}
-				if (((new Date).getTime() - detectionTimer) > 5000) {
+				if (((new Date).getTime() - detectionTimer) > 10000) {
 					headtrackerStatus("hints");
 				}
 				
@@ -273,8 +273,13 @@ maintracker.Tracker = function(params) {
 					debugContext.strokeRect((-(faceObj.width/2)) >> 0, (-(faceObj.height/2)) >> 0, faceObj.width, faceObj.height);
 					debugContext.rotate((Math.PI/2)-faceObj.angle);
 					debugContext.translate(-faceObj.x, -faceObj.y);
-				}
-				
+        }
+        console.log("movement detected");
+        alert("suspicious movement detected, please stop moving out of canvass");
+        //Play a beep
+        var snd = new Audio("beep-7.mp3"); // buffers automatically when created
+        snd.play();
+				alert("motion detected, please stay focused on your work");
 				// fade out video if it's showing
 				if (!videoFaded && params.fadeVideo) {
 					fadeVideo();
@@ -321,8 +326,7 @@ maintracker.Tracker = function(params) {
 					if (!faceFound) {
 						headtrackerStatus("found");
             faceFound = true;
-            console.log(" face found, suspicious movement detected")
-            alert('Warning: Movement dectected!');
+            
 					}
 					
 					if (params.smoothing) {

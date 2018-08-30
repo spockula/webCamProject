@@ -6,19 +6,29 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Exam Malpractise motion detector</title>
+    <link rel="stylesheet" type="text/css" href="motion.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="tracker.js"></script>
 </head>
 <body>
+        <div class="header">
+                <a href="#default" class="logo">Motion Detector Project</a>
+                <div class="header-right">
+                  <a class="active" href="motion.css">Home</a>
+                  <a href="Author.html">Author's corner</a>
+                  <a href="about.html">About</a>
+                </div>
+              </div>
     <canvas id="inputCanvas" width="320" height="240" style="display:none"></canvas>
 <video id="inputVideo" autoplay loop></video>
 <script type="text/javascript">
   var videoInput = document.getElementById('inputVideo');
   var canvasInput = document.getElementById('inputCanvas');
   
-  var htracker = new headtrackr.Tracker();
+  var htracker = new maintracker.Tracker({ui: true, smoothing:true});
   htracker.init(videoInput, canvasInput);
   htracker.start();
+  htracker.track();
 </script>
 </body>
 </html>
